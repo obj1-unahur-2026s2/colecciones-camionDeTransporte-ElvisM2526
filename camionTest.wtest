@@ -1,8 +1,7 @@
 import camion.*
 import cosas.*
 
-
-describe "Tests del Camión en la Parte 1" {
+describe "Tests del Camión" {
   method initialize() {
     bumblebee.esRobot(true)
     arenaAGranel.peso(150)
@@ -16,16 +15,16 @@ describe "Tests del Camión en la Parte 1" {
     camion.cargar(embalajeDeSeguridad)
   }
 
-  test "El peso total del camión es 2410 kg (1000 tara + 1410 de carga)" {
-    assert.equals(2410, camion.peso())
+  test "El peso total del camión es 2400 kg (1000 tara + 1400 de carga)" {
+    assert.equals(2400, camion.peso())
   }
 
   test "El peso de todas las cosas cargadas es par" {
     assert.that(camion.elPesoDeTodosEsPar())
   }
 
-  test "Hay alguna cosa cargada que pesa 150 kg" {
-    assert.that(camion.hayPesoDe(150))
+  test "Hay alguna cosa cargada que pesa 140 kg" {
+    assert.that(camion.hayPesoDe(140))
   }
 
   test "La primera cosa con peligrosidad 100 es la batería antiaérea" {
@@ -54,5 +53,9 @@ describe "Tests del Camión en la Parte 1" {
 
   test "La cosa más pesada del camión es Bumblebee" {
     assert.equals(bumblebee, camion.cosaMasPesada())
+  }
+
+  test "El total de bultos del camión es 7" {
+    assert.equals(7, camion.totalBultos())
   }
 }
