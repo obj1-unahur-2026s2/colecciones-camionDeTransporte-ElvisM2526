@@ -1,9 +1,40 @@
 import cosas.*
+import camion.*
 
-describe "group of test for cosas" {
+describe "Tests de las Cosas" {
 
-  test "first test" {
-    assert.that(true)
+  test "Paquete de ladrillos con 100 ladrillos pesa 200 kg y su peligrosidad es 2" {
+    paqueteDeLadrillos.ladrillos(100)
+    assert.equals(200, paqueteDeLadrillos.peso())
+    assert.equals(2, paqueteDeLadrillos.peligrosidad())
   }
 
+  test "Batería antiaérea con misiles pesa 300 kg y tiene peligrosidad 100" {
+    bateriaAntiaerea.cargarMisiles(true)
+    assert.equals(300, bateriaAntiaerea.peso())
+    assert.equals(100, bateriaAntiaerea.peligrosidad())
+  }
+
+  test "Batería antiaérea sin misiles pesa 200 kg y tiene peligrosidad 0" {
+    bateriaAntiaerea.cargarMisiles(false)
+    assert.equals(200, bateriaAntiaerea.peso())
+    assert.equals(0, bateriaAntiaerea.peligrosidad())
+  }
+
+  test "Contenedor portuario con Knight Rider y Bumblebee(robot) pesa 1400 kg y su peligrosidad es 30" {
+    contenedorPortuario.agregarCosa(knightRider)
+    contenedorPortuario.agregarCosa(bumblebee)
+    
+   
+    assert.equals(1400, contenedorPortuario.peso())
+    assert.equals(30, contenedorPortuario.peligrosidad())
+  }
+
+  test "Embalaje de seguridad envolviendo 30 kg de residuos radioactivos" {
+    residuosRadioactivos.peso(30)
+    embalajeDeSeguridad.envolver(residuosRadioactivos)
+
+    assert.equals(30, embalajeDeSeguridad.peso())
+    assert.equals(100, embalajeDeSeguridad.peligrosidad())
+  }
 }
