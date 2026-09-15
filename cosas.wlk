@@ -1,6 +1,7 @@
 object knightRider {
   method peso() = 500
   method peligrosidad() = 10
+  method bultos() = 1
 }
 
 object bumblebee {
@@ -16,10 +17,11 @@ object bumblebee {
   method peligrosidad() {
     if (esRobot) {
       return 30
-    } else {
-      return 15
     }
+    return 15
   }
+
+  method bultos() = 2
 }
 
 object paqueteDeLadrillos {
@@ -32,6 +34,16 @@ object paqueteDeLadrillos {
 
   method peso() = ladrillos * 2
   method peligrosidad() = peligrosidad
+
+  method bultos() {
+    if (ladrillos <= 100) {
+      return 1
+    }
+    if (ladrillos <= 300) {
+      return 2
+    }
+    return 3
+  }
 }
 
 object arenaAGranel {
@@ -44,6 +56,7 @@ object arenaAGranel {
 
   method peso() = peso
   method peligrosidad() = peligrosidad
+  method bultos() = 1
 }
 
 object bateriaAntiaerea {
@@ -56,17 +69,22 @@ object bateriaAntiaerea {
   method peso() {
     if (hayMisiles) {
       return 300
-    } else {
-      return 200
     }
+    return 200
   }
 
   method peligrosidad() {
     if (hayMisiles) {
       return 100
-    } else {
-      return 0
     }
+    return 0
+  }
+
+  method bultos() {
+    if (hayMisiles) {
+      return 2
+    }
+    return 1
   }
 }
 
@@ -80,6 +98,7 @@ object residuosRadioactivos {
 
   method peso() = peso
   method peligrosidad() = peligrosidad
+  method bultos() = 1
 }
 
 object contenedorPortuario {
@@ -94,10 +113,11 @@ object contenedorPortuario {
   method peligrosidad() {
     if (cosasDentro.isEmpty()) {
       return 0
-    } else {
-      return cosasDentro.max({ unaCosa => unaCosa.peligrosidad() }).peligrosidad()
     }
+    return cosasDentro.max({ unaCosa => unaCosa.peligrosidad() }).peligrosidad()
   }
+
+  method bultos() = 1 + cosasDentro.sum({ unaCosa => unaCosa.bultos() })
 }
 
 object embalajeDeSeguridad {
@@ -110,4 +130,6 @@ object embalajeDeSeguridad {
   method peso() = cosaEnvolviendo.peso()
 
   method peligrosidad() = cosaEnvolviendo.peligrosidad() / 2
+
+  method bultos() = 2
 }

@@ -60,4 +60,9 @@ object camion {
   method cosaMasPesada() {
     return cosas.max({ cosa => cosa.peso() })
   }
+  
+  //parte 2
+  method totalBultos() {
+  return cosasCargadas.sum({ unaCosa => unaCosa.bultos() })
+}
 }
