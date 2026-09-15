@@ -2,6 +2,8 @@ object knightRider {
   method peso() = 500
   method peligrosidad() = 10
   method bultos() = 1
+
+  method consecuenciaDeCarga() {}
 }
 
 object bumblebee {
@@ -22,6 +24,10 @@ object bumblebee {
   }
 
   method bultos() = 2
+
+  method consecuenciaDeCarga() {
+    esRobot = true
+  }
 }
 
 object paqueteDeLadrillos {
@@ -44,6 +50,10 @@ object paqueteDeLadrillos {
     }
     return 3
   }
+
+  method consecuenciaDeCarga() {
+    ladrillos = ladrillos + 12
+  }
 }
 
 object arenaAGranel {
@@ -57,6 +67,10 @@ object arenaAGranel {
   method peso() = peso
   method peligrosidad() = peligrosidad
   method bultos() = 1
+
+  method consecuenciaDeCarga() {
+    peso = (peso - 10).max(0)
+  }
 }
 
 object bateriaAntiaerea {
@@ -86,6 +100,10 @@ object bateriaAntiaerea {
     }
     return 1
   }
+
+  method consecuenciaDeCarga() {
+    hayMisiles = true
+  }
 }
 
 object residuosRadioactivos {
@@ -99,6 +117,10 @@ object residuosRadioactivos {
   method peso() = peso
   method peligrosidad() = peligrosidad
   method bultos() = 1
+
+  method consecuenciaDeCarga() {
+    peso = peso + 15
+  }
 }
 
 object contenedorPortuario {
@@ -118,6 +140,10 @@ object contenedorPortuario {
   }
 
   method bultos() = 1 + cosasDentro.sum({ unaCosa => unaCosa.bultos() })
+
+  method consecuenciaDeCarga() {
+    cosasDentro.forEach({ unaCosa => unaCosa.consecuenciaDeCarga() })
+  }
 }
 
 object embalajeDeSeguridad {
@@ -132,4 +158,6 @@ object embalajeDeSeguridad {
   method peligrosidad() = cosaEnvolviendo.peligrosidad() / 2
 
   method bultos() = 2
+
+  method consecuenciaDeCarga() {}
 }

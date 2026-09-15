@@ -2,11 +2,8 @@ object camion {
   var cosas = []
   const tara = 1000
 
-  // 1. Cargar y descargar cosas, y peso total del camión
-  method cargar(unaCosa) {
-    cosas.add(unaCosa)
-  }
-
+  // 1. Descargar cosas, y peso total del camión
+ 
   method descargar(unaCosa) {
     cosas.remove(unaCosa)
   }
@@ -62,7 +59,15 @@ object camion {
   }
   
   //parte 2
+  //a.
   method totalBultos() {
-  return cosasCargadas.sum({ unaCosa => unaCosa.bultos() })
-}
+    return cosas.sum({ unaCosa => unaCosa.bultos() })
+  }
+  
+  //b.
+  method cargar(unaCosa) {
+    cosas.add(unaCosa)
+    unaCosa.consecuenciaDeCarga()
+  }
+
 }
