@@ -14,7 +14,7 @@ object camion {
 
   // 2. Conocer si los pesos de todas las cosas cargadas son números pares
   method elPesoDeTodosEsPar() {
-    return cosas.all({ unaCosa => unaCosa.peso().even() })
+    return cosas.all({ unaCosa => unaCosa.peso() % 2 == 0 })  
   }
 
   // 3. Consultar si hay alguna cosa que pesa un determinado valor
